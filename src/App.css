@@ -1,0 +1,179 @@
+/* Apply a smooth-moving gradient background to the whole app */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(-45deg, #6a0572, #b62eaf, #4c0572, #9d0191);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  color: rgb(171, 251, 255);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Chat container */
+.chat-container {
+  width: 80%;
+  max-width: 700px;
+  min-width: 700px;
+  height: 70vh;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column; /* Fix: changed from column-reverse to column */
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+/* Message container */
+.message {
+  margin: 10px 0;
+  padding: 10px 15px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.2s ease-in-out;
+  max-width: 80%;
+  word-wrap: break-word;
+  flex-shrink: 0;
+}
+
+.message.sent {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  color: #fff;
+  text-align: right;
+  margin-left: auto; /* Align sent messages to the right */
+}
+
+.message.received {
+  background: linear-gradient(to left, #f85032, #e73827);
+  color: #fff;
+  text-align: left;
+  margin-right: auto; /* Align received messages to the left */
+}
+
+/* Hover effect for messages */
+.message:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Message details (time and delete button) */
+.message-details {
+  display: none;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.message-details.visible {
+  display: block;
+}
+
+.delete-button {
+  background: red;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: darkred;
+}
+
+/* Input and Send button */
+form {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+form input {
+  flex: 1;
+  padding: 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px 0 0 25px;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+form input::placeholder {
+  color: #bbb;
+}
+
+/* Send button */
+form button {
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  background: linear-gradient(to right, #3800b0, #3da4c9);
+  color: white;
+  border: none;
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+form button:hover {
+  background: linear-gradient(to right, #4ca3e1, #590179);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Glowing effect on hover */
+}
+
+/* Scrollbar styling */
+.chat-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  background: #4460ad;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Glowing effect */
+}
+
+.chat-container::-webkit-scrollbar-thumb:hover {
+  background: #9b59b6;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Glowing effect on hover */
+}
+
+.chat-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (max-width: 600px) {
+  .chat-container {
+    padding: 15px;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  form input, form button {
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 25px;
+  }
+}
+
