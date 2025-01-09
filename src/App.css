@@ -27,9 +27,8 @@ body {
 
 /* Chat container */
 .chat-container {
-  width: 80%;
+  width: 90%;
   max-width: 700px;
-  min-width: 700px;
   height: 70vh;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 15px;
@@ -37,7 +36,7 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   overflow-y: auto;
   display: flex;
-  flex-direction: column; /* Fix: changed from column-reverse to column */
+  flex-direction: column;
   justify-content: flex-start;
   margin-top: 20px;
 }
@@ -60,14 +59,14 @@ body {
   background: linear-gradient(to right, #00c6ff, #0072ff);
   color: #fff;
   text-align: right;
-  margin-left: auto; /* Align sent messages to the right */
+  margin-left: auto;
 }
 
 .message.received {
   background: linear-gradient(to left, #f85032, #e73827);
   color: #fff;
   text-align: left;
-  margin-right: auto; /* Align received messages to the left */
+  margin-right: auto;
 }
 
 /* Hover effect for messages */
@@ -104,6 +103,7 @@ body {
 form {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 20px;
   width: 100%;
 }
@@ -116,15 +116,15 @@ form input {
   border-radius: 25px 0 0 25px;
   outline: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 70%; /* Ensures proper size on mobile */
 }
 
 form input::placeholder {
   color: #bbb;
 }
 
-/* Send button */
 form button {
-  padding: 15px 20px;
+  padding: 12.6px 20px;
   font-size: 1.2rem;
   background: linear-gradient(to right, #3800b0, #3da4c9);
   color: white;
@@ -133,11 +133,12 @@ form button {
   cursor: pointer;
   transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
 }
 
 form button:hover {
   background: linear-gradient(to right, #4ca3e1, #590179);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Glowing effect on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* Scrollbar styling */
@@ -148,32 +149,60 @@ form button:hover {
 .chat-container::-webkit-scrollbar-thumb {
   background: #4460ad;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Glowing effect */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .chat-container::-webkit-scrollbar-thumb:hover {
   background: #9b59b6;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Glowing effect on hover */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 .chat-container::-webkit-scrollbar-track {
   background: transparent;
 }
 
-@media (max-width: 600px) {
+/* Responsive Design */
+@media (max-width: 768px) {
   .chat-container {
+    width: 95%;
+    height: 65vh;
     padding: 15px;
   }
 
   form {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
   }
 
-  form input, form button {
-    width: 100%;
-    margin-bottom: 10px;
-    border-radius: 25px;
+  form input {
+    border-radius: 25px 0 0 25px;
+    margin-right: 0;
+    width: 100%; /* Ensure input spans the width on mobile */
+  }
+
+  form button {
+    border-radius: 0 25px 25px 0;
   }
 }
 
+@media (max-width: 480px) {
+  .chat-container {
+    height: 60vh;
+  }
+
+  form {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  form input {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  form button {
+    padding: 10px 15px;
+    font-size: 1rem;
+  }
+}
